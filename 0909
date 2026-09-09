@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地球物理通論 × 喵星人探究指南 🐾 | 臺北市立大學地生系</title>
+  <meta name="description" content="臺北市立大學地球環境暨生物資源學系《地球物理通論》雙語與AI探究課程指引！這是一門結合 CLIL 雙語學科、CER 科學論證、AI Agent、PyGMT、GitHub 實作與超可愛貓咪的探究式課程。">
+  <meta name="keywords" content="地球物理通論, General Geophysics, 臺北市立大學, 地生系, 陳達毅, CLIL, CER, AI Agent, PyGMT, 貓咪風格, GitHub Pages">
+  <meta name="author" content="陳達毅 (Dayi Chen)">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #FAF6F0;
+      --bg-soft: #F4ECE1;
+      --card-bg: #FFFFFF;
+      --primary: #FF7043;
+      --primary-hover: #F4511E;
+      --secondary: #FFAB91;
+      --accent-yellow: #FFCA28;
+      --accent-mint: #26A69A;
+      --accent-pink: #FF80AB;
+      --text-dark: #372A28;
+      --text-muted: #796660;
+      --border-color: #EBDDCF;
+      --shadow-sm: 0 4px 12px rgba(90, 50, 30, 0.06);
+      --shadow-md: 0 10px 25px rgba(90, 50, 30, 0.1);
+      --shadow-lg: 0 20px 40px rgba(90, 50, 30, 0.14);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      --font-display: 'Fredoka', 'Noto Sans TC', sans-serif;
+      --font-body: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 112, 67, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 202, 40, 0.07) 0%, transparent 25%);
+    }
+
+    /* 頂部浮動導覽列 */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(250, 246, 240, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--border-color);
+      padding: 0.8rem 1.5rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo-cat-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--accent-yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 8px rgba(255, 112, 67, 0.2);
+    }
+
+    nav.main-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    nav.main-nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      transition: all 0.25s ease;
+    }
+
+    nav.main-nav a:hover {
+      background: var(--bg-soft);
+      color: var(--primary);
+    }
+
+    .btn-paw-pet {
+      background: linear-gradient(135deg, var(--primary), #FF8A65);
+      color: white !important;
+      padding: 8px 18px !important;
+      box-shadow: 0 4px 12px rgba(255, 112, 67, 0.3);
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-display);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-paw-pet:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 16px rgba(255, 112, 67, 0.4);
+    }
+
+    /* 版面配置 */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 4.5rem 0;
+      position: relative;
+    }
+
+    /* 貓耳標題小標籤 */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-soft);
+      color: var(--primary);
+      border: 1.5px solid var(--border-color);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .section-tag::before, .section-tag::after {
+      content: '';
+      position: absolute;
+      top: -6px;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 7px solid var(--primary);
+    }
+    .section-tag::before { left: 16px; }
+    .section-tag::after { right: 16px; }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 1.08rem;
+      max-width: 720px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 4rem 0 5rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFE8DF;
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 3.1rem;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-title span.highlight {
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title span.highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: rgba(255, 202, 40, 0.4);
+      z-index: -1;
+      border-radius: 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-quote-box {
+      background: var(--card-bg);
+      border-left: 5px solid var(--primary);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2.2rem;
+      font-size: 0.98rem;
+      color: var(--text-dark);
+    }
+
+    .hero-quote-box strong {
+      color: var(--primary);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 20px rgba(255, 112, 67, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-main:hover {
+      background: var(--primary-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 26px rgba(255, 112, 67, 0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      color: var(--text-dark);
+      border: 2px solid var(--border-color);
+      text-decoration: none;
+      padding: 11px 24px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* 英雄貓咪卡片展示 */
+    .hero-cat-showcase {
+      position: relative;
+    }
+
+    .cat-mascot-card {
+      background: var(--card-bg);
+      border: 3px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.2rem 1.8rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat-avatar-wrap {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(145deg, #FFE0B2, #FFF3E0);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+      border: 4px solid white;
+    }
+
+    .cat-avatar-svg {
+      width: 170px;
+      height: 170px;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .cat-mascot-card:hover .cat-avatar-svg {
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .cat-name-tag {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .cat-role-tag {
+      display: inline-block;
+      background: var(--bg-soft);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .cat-speech-bubble {
+      background: #FFF9C4;
+      border: 2px dashed #FBC02D;
+      padding: 0.8rem 1.2rem;
+      border-radius: 18px;
+      font-size: 0.95rem;
+      color: #5D4037;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .cat-speech-bubble::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 10px solid #FBC02D;
+    }
+
+    /* 浮動貓掌裝飾 */
+    .floating-paw {
+      position: absolute;
+      opacity: 0.25;
+      pointer-events: none;
+      animation: floatPaw 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatPaw {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-16px) rotate(12deg); }
+    }
+
+    /* 為什麼有貓？（貓咪地球物理學） */
+    .cat-science-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .cat-science-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2rem 1.6rem;
+      transition: all 0.3s ease;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cat-science-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+
+    .cat-science-icon {
+      width: 58px;
+      height: 58px;
+      background: var(--bg-soft);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cat-science-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--text-dark);
+    }
+
+    .cat-science-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    /* 上課方式：任務導向與四大核心 */
+    .pedagogy-section {
+      background: var(--bg-soft);
+      border-radius: var(--radius-lg);
+      padding: 4.5rem 2rem;
+      margin: 2rem 0;
+    }
+
+    .core-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .pillar-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 1.8rem 1.5rem;
+      border: 2px solid transparent;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+    }
+
+    .pillar-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+    }
+
+    .pillar-number {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--secondary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-heading {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* 3小時時間任務地圖 */
+    .timeline-wrap {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      border: 2px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .timeline-flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .timeline-block {
+      background: var(--bg-cream);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      border-left: 6px solid var(--primary);
+    }
+
+    .timeline-block.part2 {
+      border-left-color: var(--accent-mint);
+    }
+    .timeline-block.part3 {
+      border-left-color: var(--accent-yellow);
+    }
+
+    .time-badge {
+      display: inline-block;
+      background: var(--card-bg);
+      color: var(--text-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 0.6rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .timeline-block h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .timeline-list {
+      list-style: none;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .timeline-list li {
+      margin-bottom: 0.4rem;
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .timeline-list li::before {
+      content: '🐾';
+      position: absolute;
+      left: 0;
+      font-size: 0.75rem;
+    }
+
+    /* 課前準備清單 CHECKLIST */
+    .prep-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .prep-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .prep-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .prep-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #FFF3E0;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .prep-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .prep-text {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .prep-tip {
+      background: var(--bg-soft);
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 互動產生器：喵星人 CER 思考法 */
+    .cer-interactive-container {
+      background: var(--card-bg);
+      border: 3px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.2rem;
+      box-shadow: var(--shadow-md);
+      margin-top: 1rem;
+    }
+
+    .cer-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1.8rem;
+      flex-wrap: wrap;
+    }
+
+    .cer-tab-btn {
+      background: var(--bg-soft);
+      border: 2px solid transparent;
+      padding: 9px 20px;
+      border-radius: 25px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .cer-tab-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255, 112, 67, 0.3);
+    }
+
+    .cer-content-box {
+      background: var(--bg-cream);
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      border: 1.5px solid var(--border-color);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .cer-item {
+      background: var(--card-bg);
+      padding: 1.3rem;
+      border-radius: var(--radius-sm);
+      border-top: 4px solid var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cer-item.evidence {
+      border-top-color: var(--accent-mint);
+    }
+    .cer-item.reasoning {
+      border-top-color: var(--accent-yellow);
+    }
+
+    .cer-item-label {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .cer-item-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .cer-item-text {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* 英文 CLIL 口說六句組輪播卡 */
+    .clil-quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .clil-phrase-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .clil-phrase-card:hover {
+      border-color: var(--primary);
+      background: #FFFBF9;
+      transform: translateX(4px);
+    }
+
+    .clil-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-soft);
+      color: var(--primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .clil-en {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.98rem;
+      margin-bottom: 2px;
+    }
+
+    .clil-zh {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* 摸摸貓咪計數互動區 */
+    .cat-interaction-bar {
+      margin-top: 3rem;
+      background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+      border: 2px solid #FFCC80;
+      border-radius: var(--radius-md);
+      padding: 1.8rem 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .cat-interaction-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #5D4037;
+      margin-bottom: 0.3rem;
+    }
+
+    .cat-interaction-text p {
+      color: #795548;
+      font-size: 0.95rem;
+    }
+
+    .pet-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .pet-count-display {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: white;
+      padding: 6px 18px;
+      border-radius: 20px;
+      border: 1.5px solid #FFAB91;
+    }
+
+    /* 頁尾 FOOTER */
+    footer.site-footer {
+      background: #2D2522;
+      color: #D7CCC8;
+      padding: 4rem 0 2.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr 0.8fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand h3 {
+      font-family: var(--font-display);
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand p {
+      font-size: 0.92rem;
+      color: #A1887F;
+      line-height: 1.8;
+    }
+
+    .footer-links h4, .footer-quote h4 {
+      color: white;
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+      font-family: var(--font-display);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      color: #BCAAA4;
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-yellow);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #4E342E;
+      padding-top: 1.8rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #8D6E63;
+    }
+
+    /* 響應式微調 */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-quote-box {
+        border-left: none;
+        border-top: 4px solid var(--primary);
+        border-radius: var(--radius-md);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      nav.main-nav a:not(.btn-paw-pet) {
+        display: none;
+      }
+      .cat-interaction-bar {
+        text-align: center;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部導覽列 -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#" class="logo-badge" id="nav-logo">
+        <div class="logo-cat-icon">🐾</div>
+        <span>Geophysics × 喵星人</span>
+      </a>
+      <nav class="main-nav">
+        <a href="#why-cat">為什麼有貓？</a>
+        <a href="#how-we-learn">上課方式</a>
+        <a href="#how-to-prep">課前準備</a>
+        <a href="#cer-demo">CER 思考法</a>
+        <a href="#clil-speech">科學英語</a>
+        <button class="btn-paw-pet" id="nav-pet-btn" onclick="petTheCat()">
+          <span>🐾 摸摸貓助教</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO 主視覺區塊 -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>🐱 臺北市立大學 地生系二年級 必修導航</span>
+          </div>
+          <h1 class="hero-title">
+            地球物理通論<br>
+            <span class="highlight">× 喵星人探究指南</span> 🐾
+          </h1>
+          <p class="hero-subtitle">
+            不背死答案、不怕菜英文、不懼新程式！以<strong>任務導向（Task-based）</strong>帶你玩轉 
+            <strong>CLIL 雙語學科</strong>、<strong>CER 科學論證</strong>、<strong>AI Agent</strong>、<strong>PyGMT 繪圖</strong> 與 <strong>GitHub Pages</strong>。
+          </p>
+
+          <div class="hero-quote-box">
+            🐾 <strong>課程核心理念</strong>：<br>
+            「我們不是為了學英文而學英文，而是學會用英文來探索地球物理；我們用 AI 輔助探索，但最後用自己的大腦思考來理解世界。」
+          </div>
+
+          <div class="hero-actions">
+            <a href="#how-we-learn" class="btn-main" id="btn-explore-tasks">
+              <span>🚀 探索上課方式</span>
+            </a>
+            <a href="#how-to-prep" class="btn-secondary" id="btn-prep-checklist">
+              <span>🎒 查看課前準備清單</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 貓咪形象卡片 -->
+        <div class="hero-cat-showcase">
+          <div class="cat-mascot-card">
+            <div class="cat-avatar-wrap">
+              <!-- 精緻超萌貓咪地質學家 SVG -->
+              <svg class="cat-avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- 貓耳 -->
+                <polygon points="40,90 20,30 80,60" fill="#FFB74D" stroke="#E65100" stroke-width="4" stroke-linejoin="round"/>
+                <polygon points="42,80 32,45 70,62" fill="#FF8A80" />
+                <polygon points="160,90 180,30 120,60" fill="#FFB74D" stroke="#E65100" stroke-width="4" stroke-linejoin="round"/>
+                <polygon points="158,80 168,45 130,62" fill="#FF8A80" />
+
+                <!-- 貓頭 -->
+                <ellipse cx="100" cy="115" rx="72" ry="62" fill="#FFE082" stroke="#E65100" stroke-width="4"/>
+                
+                <!-- 額頭虎斑紋 -->
+                <path d="M100 65 L100 85 M86 68 L92 82 M114 68 L108 82" stroke="#E65100" stroke-width="4" stroke-linecap="round"/>
+
+                <!-- 貓臉雙頰花紋 -->
+                <ellipse cx="60" cy="135" rx="14" ry="10" fill="#FFAB91" opacity="0.6"/>
+                <ellipse cx="140" cy="135" rx="14" ry="10" fill="#FFAB91" opacity="0.6"/>
+
+                <!-- 貓眼睛 -->
+                <ellipse cx="72" cy="112" rx="11" ry="14" fill="#2E7D32"/>
+                <circle cx="75" cy="108" r="4.5" fill="white"/>
+                <ellipse cx="128" cy="112" rx="11" ry="14" fill="#2E7D32"/>
+                <circle cx="131" cy="108" r="4.5" fill="white"/>
+
+                <!-- 貓鼻子與嘴巴 -->
+                <polygon points="96,126 104,126 100,132" fill="#FF5252"/>
+                <path d="M100 132 Q93 140 85 136 M100 132 Q107 140 115 136" stroke="#5D4037" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+                <!-- 貓鬍鬚 -->
+                <line x1="45" y1="124" x2="15" y2="120" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
+                <line x1="45" y1="134" x2="18" y2="138" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
+                <line x1="155" y1="124" x2="185" y2="120" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
+                <line x1="155" y1="134" x2="182" y2="138" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- 工安工程帽（地球物理野外探勘帽） -->
+                <ellipse cx="100" cy="62" rx="56" ry="18" fill="#FFD54F" stroke="#F57F17" stroke-width="3"/>
+                <path d="M52 62 C52 28, 148 28, 148 62 Z" fill="#FFEE58" stroke="#F57F17" stroke-width="3"/>
+                <circle cx="100" cy="46" r="8" fill="#4CAF50"/>
+                <path d="M100 41 L100 51 M95 46 L105 46" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+
+                <!-- 放大鏡 / 震測波小配件 -->
+                <path d="M142 145 Q160 160 175 180" stroke="#FF7043" stroke-width="6" stroke-linecap="round"/>
+                <circle cx="140" cy="142" r="16" stroke="#FF7043" stroke-width="4" fill="#E0F7FA" fill-opacity="0.7"/>
+                <path d="M132 142 Q136 134 140 142 T148 142" stroke="#00838F" stroke-width="2.5" fill="none"/>
+              </svg>
+            </div>
+            <h3 class="cat-name-tag">橘寶隊長 (Captain Paws)</h3>
+            <span class="cat-role-tag">首席地球物理喵助教 🐾</span>
+            <div class="cat-speech-bubble" id="cat-bubble-text">
+              「喵嗚！踩踩地表就能感測微震波，這就是地球物理的浪漫！」
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 為什麼有貓？貓咪地球物理學 -->
+  <section id="why-cat">
+    <div class="container">
+      <div class="section-tag">Feline Geophysics</div>
+      <h2 class="section-title">🐾 為什麼這門地球物理課要有貓？</h2>
+      <p class="section-desc">
+        很多人以為地球物理全是生硬的數學微積分與繁重程式碼？其實，貓咪才是自然界最頂尖的地球物理學大師！
+      </p>
+
+      <div class="cat-science-grid">
+        <div class="cat-science-card">
+          <div class="cat-science-icon">🐾</div>
+          <h3 class="cat-science-title">1. 肉球＝天然寬頻地震儀</h3>
+          <p class="cat-science-text">
+            貓咪的肉墊分佈著密集的帕西尼氏小體（Pacinian corpuscles），對地表微米級的高頻顫動極為敏銳。地震來臨前，貓咪往往比人類更早察覺初達 P 波！
+          </p>
+        </div>
+
+        <div class="cat-science-card">
+          <div class="cat-science-icon">🌊</div>
+          <h3 class="cat-science-title">2. 貓咪是流體也是固體</h3>
+          <p class="cat-science-text">
+            獲得搞笑諾貝爾獎的物理學證實：貓能在盒子裡變成液體。這正是地球地函（Mantle）高溫高壓下具備「固體彈性波傳播」與「長期黏滯流變對流」的最佳物理隱喻！
+          </p>
+        </div>
+
+        <div class="cat-science-card">
+          <div class="cat-science-icon">⚡</div>
+          <h3 class="cat-science-title">3. 貓抓板與斷層彈性回跳</h3>
+          <p class="cat-science-text">
+            當貓咪瘋狂抓貓抓板時，剪應力隨時間不斷累積；當超過紙板抗剪強度時，瞬間破裂釋放應變能——這就是芮氏地震規模與彈性回跳理論（Elastic Rebound）的日常實踐！
+          </p>
+        </div>
+
+        <div class="cat-science-card">
+          <div class="cat-science-icon">🔍</div>
+          <h3 class="cat-science-title">4. 好奇心是科學探究的本能</h3>
+          <p class="cat-science-text">
+            "Curiosity killed the cat, but satisfaction brought it back." 科學家看見未知數據時的眼睛，就跟貓咪盯著會動的逗貓棒一樣發亮。保持這份好奇，你就是地球物理學家！
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 上課方式與四大核心理念 -->
+  <section id="how-we-learn" class="pedagogy-section">
+    <div class="container">
+      <div class="section-tag">Learning Methodology</div>
+      <h2 class="section-title">🎓 我們怎麼上課？打破傳統背誦的「四大核心」</h2>
+      <p class="section-desc">
+        這門課絕不是「老師在台上講、學生在台下抄、期末考前死背考古題」。我們透過任務挑戰模式，讓大家親手動手做、開口論證、駕馭現代工具。
+      </p>
+
+      <div class="core-pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-number">01</div>
+          <h3 class="pillar-heading">任務導向 × 小組合作</h3>
+          <p class="pillar-desc">
+            每堂課劃分明確的小任務（Tasks）。2–3人組成探究戰隊，互相討論、協作編程，從第一堂課就開始累積作品集，拒當教室孤島！
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-number">02</div>
+          <h3 class="pillar-heading">CLIL 雙語學科整合</h3>
+          <p class="pillar-desc">
+            不是英文課，而是「用英文當探究工具」。老師提供全套 8 級階梯式句型鷹架，讓你輕鬆用道地科學英語發表觀點與討論數據。
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-number">03</div>
+          <h3 class="pillar-heading">CER 科學論證思維</h3>
+          <p class="pillar-desc">
+            不說「我覺得」，而是追問：你的主張（Claim）是什麼？你的實證數據（Evidence）在哪？連接二者的物理推理（Reasoning）是否合理？
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-number">04</div>
+          <h3 class="pillar-heading">AI 協作與數位工具鏈</h3>
+          <p class="pillar-desc">
+            掌握 Gemini、Codex、Google Colab、PyGMT 與 GitHub Pages。AI 是你的智慧貓助教，學習提問與檢驗，而不是抄襲答案！
+          </p>
+        </div>
+      </div>
+
+      <!-- 第一堂課3小時時間表 -->
+      <div class="timeline-wrap">
+        <div class="timeline-header">
+          <div class="timeline-title">⏱️ 第一堂課 3 小時任務通關地圖 (Task Map)</div>
+          <span style="font-size: 0.88rem; color: var(--primary); font-weight: 700;">每節課 50 分鐘，中場休息 10 分鐘 🐾</span>
+        </div>
+
+        <div class="timeline-flow">
+          <div class="timeline-block">
+            <span class="time-badge">09:00 - 09:50 · Part 1</span>
+            <h4>建立這門課的學習方式</h4>
+            <ul class="timeline-list">
+              <li><strong>Task 1</strong>：老師自我介紹（地震預警與 AI 教學）</li>
+              <li><strong>Task 2</strong>：這學期要做什麼？（18週地球物理地圖）</li>
+              <li><strong>Task 3</strong>：上課方式與期末 GitHub 成果展</li>
+              <li><strong>Task 4</strong>：2–3人分組，選出小組長</li>
+            </ul>
+          </div>
+
+          <div class="timeline-block part2">
+            <span class="time-badge">10:00 - 10:50 · Part 2</span>
+            <h4>數位與 AI 工具鏈起步</h4>
+            <ul class="timeline-list">
+              <li><strong>Task 5</strong>：認識 AI Agent（對話紀錄留存規範）</li>
+              <li><strong>Task 6</strong>：申請與啟用 GitHub 帳號</li>
+              <li><strong>Task 7</strong>：進入 Google Colab 雲端跑第一行 Python</li>
+            </ul>
+          </div>
+
+          <div class="timeline-block part3">
+            <span class="time-badge">11:00 - 12:00 · Part 3</span>
+            <h4>地球物理探究與 CER 示範</h4>
+            <ul class="timeline-list">
+              <li><strong>Task 8</strong>：什麼是地球物理？（三大支柱與四大領域）</li>
+              <li><strong>Demo</strong>：Gemini + CER 實時探究示範</li>
+              <li><strong>Exit Ticket</strong>：保存 AI 對話紀錄，完成課後小任務</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 課前準備清單 -->
+  <section id="how-to-prep">
+    <div class="container">
+      <div class="section-tag">Checklist</div>
+      <h2 class="section-title">🎒 上課前要準備什麼？（奴才探險清單）</h2>
+      <p class="section-desc">
+        不用提前把整本厚重的課本背完！只要備齊以下幾樣「裝備」，你就能輕鬆跟上課程步調：
+      </p>
+
+      <div class="prep-card-grid">
+        <div class="prep-card">
+          <div>
+            <div class="prep-badge">💻</div>
+            <h3 class="prep-title">1. 攜帶筆電（充飽電）</h3>
+            <p class="prep-text">
+              課堂包含即時程式實作、AI 對話探究與 GitHub 協作。請務必攜帶筆電（Windows / Mac / Chromebook 皆可）與充電器。
+            </p>
+          </div>
+          <div class="prep-tip">
+            <span>🐾 叮嚀</span>：瀏覽器推薦使用 Chrome 或 Edge。
+          </div>
+        </div>
+
+        <div class="prep-card">
+          <div>
+            <div class="prep-badge">🐙</div>
+            <h3 class="prep-title">2. 申請 GitHub 帳號</h3>
+            <p class="prep-text">
+              我們會用 GitHub 進行代碼管理與期末專案網頁（GitHub Pages）部署。若還沒有帳號，請至 github.com 免費註冊一個喜歡的 ID。
+            </p>
+          </div>
+          <div class="prep-tip">
+            <span>🐾 叮嚀</span>：可以用自己好記的帳號名稱。
+          </div>
+        </div>
+
+        <div class="prep-card">
+          <div>
+            <div class="prep-badge">☁️</div>
+            <h3 class="prep-title">3. 確認 Google 帳號</h3>
+            <p class="prep-text">
+              我們將使用 Google Colab，雲端免費提供高效能運算環境，你不需要在電腦上苦惱安裝複雜的 Python 或地學函式庫！
+            </p>
+          </div>
+          <div class="prep-tip">
+            <span>🐾 叮嚀</span>：建議使用北市大學校信箱或常用個人 Gmail。
+          </div>
+        </div>
+
+        <div class="prep-card">
+          <div>
+            <div class="prep-badge">🧠</div>
+            <h3 class="prep-title">4. 開放與好奇的心態</h3>
+            <p class="prep-text">
+              英文不流利？沒有寫過程式？通通沒關係！這門課由淺入深，老師與助教會一步步陪伴大家，犯錯是探索科學的最佳途徑！
+            </p>
+          </div>
+          <div class="prep-tip">
+            <span>🐾 叮嚀</span>：只要敢發問、敢跟 AI 辯論，你就是霸氣主子！
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CER 思考法互動展示 -->
+  <section id="cer-demo">
+    <div class="container">
+      <div class="section-tag">Scientific Reasoning</div>
+      <h2 class="section-title">🧩 喵星人 CER 思考法展示</h2>
+      <p class="section-desc">
+        科學家怎麼知道一件事情是對的？點選下方三個真實地球物理探究情境，看看 Claim、Evidence、Reasoning 如何緊密結合：
+      </p>
+
+      <div class="cer-interactive-container">
+        <div class="cer-tabs">
+          <button class="cer-tab-btn active" onclick="switchCerTab(0)">🌋 案例一：台灣地震與板塊</button>
+          <button class="cer-tab-btn" onclick="switchCerTab(1)">📉 案例二：折射震測走時</button>
+          <button class="cer-tab-btn" onclick="switchCerTab(2)">⚖️ 案例三：地下重力異常</button>
+        </div>
+
+        <div class="cer-content-box" id="cer-display-box">
+          <!-- JS 動態插入案例內容 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIL 科學英語口說 -->
+  <section id="clil-speech">
+    <div class="container">
+      <div class="section-tag">Bilingual Sentence Bank</div>
+      <h2 class="section-title">🗣️ 學生必備「科學論述六句組」</h2>
+      <p class="section-desc">
+        不用死背冗長文法，學會這六個科學金句，你就能流利表達觀察、假說與結論：
+      </p>
+
+      <div class="clil-quotes-grid">
+        <div class="clil-phrase-card">
+          <div class="clil-num">1</div>
+          <div>
+            <div class="clil-en">We observe that...</div>
+            <div class="clil-zh">我們觀察到＿＿＿＿。（描述現象與地圖特徵）</div>
+          </div>
+        </div>
+
+        <div class="clil-phrase-card">
+          <div class="clil-num">2</div>
+          <div>
+            <div class="clil-en">We want to know why...</div>
+            <div class="clil-zh">我們想知道為什麼＿＿＿＿。（聚焦探究核心問題）</div>
+          </div>
+        </div>
+
+        <div class="clil-phrase-card">
+          <div class="clil-num">3</div>
+          <div>
+            <div class="clil-en">We hypothesize that...</div>
+            <div class="clil-zh">我們假設＿＿＿＿。（大膽提出初期物理模型）</div>
+          </div>
+        </div>
+
+        <div class="clil-phrase-card">
+          <div class="clil-num">4</div>
+          <div>
+            <div class="clil-en">If our hypothesis is correct, we expect...</div>
+            <div class="clil-zh">如果假說正確，我們預期＿＿＿＿。（進行驗證預測）</div>
+          </div>
+        </div>
+
+        <div class="clil-phrase-card">
+          <div class="clil-num">5</div>
+          <div>
+            <div class="clil-en">The evidence shows that...</div>
+            <div class="clil-zh">證據顯示＿＿＿＿。（呈列觀測數據與圖表）</div>
+          </div>
+        </div>
+
+        <div class="clil-phrase-card">
+          <div class="clil-num">6</div>
+          <div>
+            <div class="clil-en">Therefore, we revise our model.</div>
+            <div class="clil-zh">因此我們修改我們的模型。（科學建模的迭代循環）</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 吸貓互動按鈕列 -->
+      <div class="cat-interaction-bar">
+        <div class="cat-interaction-text">
+          <h3>🐾 摸摸橘寶隊長，吸一口地球物理歐氣！</h3>
+          <p>每次摸摸都會觸發專屬探究小密技與呼嚕聲喔～</p>
+        </div>
+        <div class="pet-btn-group">
+          <button class="btn-main" onclick="petTheCat()">
+            <span>🐾 輕輕撫摸貓助教</span>
+          </button>
+          <div class="pet-count-display">
+            摸摸次數：<span id="pet-counter">0</span> 次
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁尾資訊 -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🐾 地球物理通論</h3>
+          <p>
+            General Geophysics — Course Orientation, AI-assisted Inquiry, and Digital Workflow.<br>
+            臺北市立大學 地球環境暨生物資源學系（115學年度第1學期）<br>
+            授課教師：陳達毅 老師 (Dayi Chen)
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>專案資源檔案</h4>
+          <ul>
+            <li><a href="README.md">📄 專案詳細說明 (README.md)</a></li>
+            <li><a href="地球物理通論_第一堂課_PPT詳細版.md">📊 Marp 簡報投影片檔</a></li>
+            <li><a href="地球物理通論第一堂課｜3小時中英文對照完整講稿.md">🎙️ 3小時雙語授課完整講稿</a></li>
+            <li><a href="地球物理通論第一堂課｜CLIL句型與三例擴充附錄.md">📚 CLIL 科學英語八級句型庫</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-quote">
+          <h4>課堂金句</h4>
+          <p style="font-size: 0.88rem; color: #BCAAA4; font-style: italic;">
+            "AI can generate an answer, but understanding the answer is your responsibility."<br>
+            —— AI 可以產生答案，但理解與驗證答案是你的責任。
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Department of Earth and Environmental Sciences & Biological Resources, University of Taipei. Designed with 🐾 and ❤️ for all science explorers.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 互動腳本 JS -->
+  <script>
+    // CER 案例數據資料
+    const cerCases = [
+      {
+        title: "案例一：台灣周圍地震分布與板塊碰撞",
+        claim: {
+          label: "Claim（主張）",
+          title: "地震並非隨機散布，而是集中在特定板塊邊界帶",
+          text: "台灣東部的地震活動與菲律賓海板塊向歐亞板塊的隱沒作用密切相關。"
+        },
+        evidence: {
+          label: "Evidence（證據）",
+          title: "震央分布圖與由東向西逐漸加深的班尼奧夫帶",
+          text: "PyGMT 繪製的地震資料顯示，震央集中成狹長帶狀，且花蓮以北深度隨隱沒角度明顯加深。"
+        },
+        reasoning: {
+          label: "Reasoning（物理推理解釋）",
+          title: "板塊相對運動產生應力積累與脆性破裂",
+          text: "剛性岩石圈在聚合板塊邊界劇烈摩擦碰撞，當累積剪應力超過岩石破裂強度時，突然釋放應變能產生地震。"
+        }
+      },
+      {
+        title: "案例二：折射震測走時圖的兩段折線",
+        claim: {
+          label: "Claim（主張）",
+          title: "地下介質存在分層，且下層震波速度高於上層",
+          text: "走時圖上出現不同斜率的兩條直線，代表存在直達波與折射波。"
+        },
+        evidence: {
+          label: "Evidence（證據）",
+          title: "遠端測站收到速度更快的初達訊號",
+          text: "在交越距離（Crossover distance）之後，折射波的到達時間超越直達波，成為第一初達訊號（First arrival）。"
+        },
+        reasoning: {
+          label: "Reasoning（物理推理解釋）",
+          title: "司乃耳定律（Snell's Law）與臨界折射",
+          text: "震波以臨界角入射至高速下層地層時產生頭波（Head wave），以高速 V₂ 沿交介面傳播，並持續折射回地表。"
+        }
+      },
+      {
+        title: "案例三：局部重力測量出現高值正異常",
+        claim: {
+          label: "Claim（主張）",
+          title: "該研究測區深部存在高密度岩體或基盤隆起",
+          text: "地表測得的布格重力異常（Bouguer Anomaly）呈現局部突起的圓形正值。"
+        },
+        evidence: {
+          label: "Evidence（證據）",
+          title: "重力計讀數經地形與緯度修正後仍偏高",
+          text: "資料顯示中心區域重力值比周圍背景值高出 25 mGal，且異常範圍集中對稱。"
+        },
+        reasoning: {
+          label: "Reasoning（物理推理解釋）",
+          title: "牛頓萬有引力定律（F = G·M·m / r²）",
+          text: "地下局部的多餘質量（Excess Mass，如密集的基性岩漿侵入體）會對地表儀器產生額外的垂直向下引力吸引。"
+        }
+      }
+    ];
+
+    // 切換 CER 案例標籤
+    function switchCerTab(index) {
+      const tabs = document.querySelectorAll('.cer-tab-btn');
+      tabs.forEach((tab, i) => {
+        if (i === index) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      renderCerContent(index);
+    }
+
+    // 渲染 CER 內容
+    function renderCerContent(index) {
+      const data = cerCases[index];
+      const box = document.getElementById('cer-display-box');
+      box.innerHTML = `
+        <div class="cer-item">
+          <div class="cer-item-label">📌 ${data.claim.label}</div>
+          <div class="cer-item-title">${data.claim.title}</div>
+          <p class="cer-item-text">${data.claim.text}</p>
+        </div>
+        <div class="cer-item evidence">
+          <div class="cer-item-label">📊 ${data.evidence.label}</div>
+          <div class="cer-item-title">${data.evidence.title}</div>
+          <p class="cer-item-text">${data.evidence.text}</p>
+        </div>
+        <div class="cer-item reasoning">
+          <div class="cer-item-label">💡 ${data.reasoning.label}</div>
+          <div class="cer-item-title">${data.reasoning.title}</div>
+          <p class="cer-item-text">${data.reasoning.text}</p>
+        </div>
+      `;
+    }
+
+    // 摸摸貓咪計數與彩蛋台詞
+    let petCount = 0;
+    const catMeows = [
+      "「喵嗚～肉球感應到了一次芮氏規模 2.0 的微震！」",
+      "「呼嚕嚕… 正在用 Google Colab 計算地熱梯度…」",
+      "「主子今天記得去 GitHub 建立新的 Repository 喔！」",
+      "「喵！記得不要直接問 AI 答案，要問：『有什麼證據支持這個模型？』」",
+      "「呼嚕嚕… 貓咪是流體也是固體，就像地函對流一樣～」",
+      "「PyGMT 畫出來的地形圖，看起來就像美味的鮪魚罐頭山脊！」",
+      "「喵！我們觀察到（We observe that）同學的求知欲正在以震波速度上升！」"
+    ];
+
+    function petTheCat() {
+      petCount++;
+      document.getElementById('pet-counter').innerText = petCount;
+      
+      const bubble = document.getElementById('cat-bubble-text');
+      const randomMeow = catMeows[Math.floor(Math.random() * catMeows.length)];
+      bubble.innerText = randomMeow;
+      
+      // 俏皮微動畫
+      const avatar = document.querySelector('.cat-avatar-svg');
+      avatar.style.transform = 'scale(1.18) rotate(' + (Math.random() > 0.5 ? '8deg' : '-8deg') + ')';
+      setTimeout(() => {
+        avatar.style.transform = '';
+      }, 350);
+    }
+
+    // 初始化頁面
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCerContent(0);
+    });
+  </script>
+</body>
+</html>
