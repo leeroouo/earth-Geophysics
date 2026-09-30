@@ -131,6 +131,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      border-radius: 20px;
     }
 
     .btn-paw-pet:hover {
@@ -150,7 +151,6 @@
       position: relative;
     }
 
-    /* 貓耳標題小標籤 */
     .section-tag {
       display: inline-flex;
       align-items: center;
@@ -165,19 +165,6 @@
       margin-bottom: 1rem;
       position: relative;
     }
-
-    .section-tag::before, .section-tag::after {
-      content: '';
-      position: absolute;
-      top: -6px;
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-bottom: 7px solid var(--primary);
-    }
-    .section-tag::before { left: 16px; }
-    .section-tag::after { right: 16px; }
 
     .section-title {
       font-family: var(--font-display);
@@ -290,6 +277,8 @@
       font-size: 1.05rem;
       box-shadow: 0 8px 20px rgba(255, 112, 67, 0.35);
       transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .btn-main:hover {
@@ -321,10 +310,6 @@
     }
 
     /* 英雄貓咪卡片展示 */
-    .hero-cat-showcase {
-      position: relative;
-    }
-
     .cat-mascot-card {
       background: var(--card-bg);
       border: 3px solid var(--border-color);
@@ -391,33 +376,7 @@
       transition: all 0.3s ease;
     }
 
-    .cat-speech-bubble::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 10px solid #FBC02D;
-    }
-
-    /* 浮動貓掌裝飾 */
-    .floating-paw {
-      position: absolute;
-      opacity: 0.25;
-      pointer-events: none;
-      animation: floatPaw 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatPaw {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(-16px) rotate(12deg); }
-    }
-
-    /* 為什麼有貓？（貓咪地球物理學） */
+    /* 為什麼有貓？ */
     .cat-science-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -430,7 +389,6 @@
       border-radius: var(--radius-md);
       padding: 2rem 1.6rem;
       transition: all 0.3s ease;
-      position: relative;
       box-shadow: var(--shadow-sm);
     }
 
@@ -466,7 +424,7 @@
       line-height: 1.65;
     }
 
-    /* 上課方式：任務導向與四大核心 */
+    /* 上課方式 */
     .pedagogy-section {
       background: var(--bg-soft);
       border-radius: var(--radius-lg);
@@ -517,7 +475,6 @@
       line-height: 1.6;
     }
 
-    /* 3小時時間任務地圖 */
     .timeline-wrap {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
@@ -555,12 +512,8 @@
       border-left: 6px solid var(--primary);
     }
 
-    .timeline-block.part2 {
-      border-left-color: var(--accent-mint);
-    }
-    .timeline-block.part3 {
-      border-left-color: var(--accent-yellow);
-    }
+    .timeline-block.part2 { border-left-color: var(--accent-mint); }
+    .timeline-block.part3 { border-left-color: var(--accent-yellow); }
 
     .time-badge {
       display: inline-block;
@@ -599,7 +552,7 @@
       font-size: 0.75rem;
     }
 
-    /* 課前準備清單 CHECKLIST */
+    /* 課前準備清單 */
     .prep-card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -662,7 +615,7 @@
       gap: 8px;
     }
 
-    /* 互動產生器：喵星人 CER 思考法 */
+    /* CER 思考法 */
     .cer-interactive-container {
       background: var(--card-bg);
       border: 3px solid var(--border-color);
@@ -716,12 +669,8 @@
       box-shadow: var(--shadow-sm);
     }
 
-    .cer-item.evidence {
-      border-top-color: var(--accent-mint);
-    }
-    .cer-item.reasoning {
-      border-top-color: var(--accent-yellow);
-    }
+    .cer-item.evidence { border-top-color: var(--accent-mint); }
+    .cer-item.reasoning { border-top-color: var(--accent-yellow); }
 
     .cer-item-label {
       font-family: var(--font-display);
@@ -745,7 +694,7 @@
       line-height: 1.6;
     }
 
-    /* 英文 CLIL 口說六句組輪播卡 */
+    /* CLIL 口說 */
     .clil-quotes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -838,7 +787,7 @@
       border: 1.5px solid #FFAB91;
     }
 
-    /* 頁尾 FOOTER */
+    /* 頁尾 */
     footer.site-footer {
       background: #2D2522;
       color: #D7CCC8;
@@ -876,24 +825,15 @@
       font-family: var(--font-display);
     }
 
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.6rem;
-    }
-
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 0.6rem; }
     .footer-links a {
       color: #BCAAA4;
       text-decoration: none;
       font-size: 0.92rem;
       transition: color 0.2s ease;
     }
-
-    .footer-links a:hover {
-      color: var(--accent-yellow);
-    }
+    .footer-links a:hover { color: var(--accent-yellow); }
 
     .footer-bottom {
       border-top: 1px solid #4E342E;
@@ -903,37 +843,17 @@
       color: #8D6E63;
     }
 
-    /* 響應式微調 */
     @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .hero-actions {
-        justify-content: center;
-      }
-      .hero-quote-box {
-        border-left: none;
-        border-top: 4px solid var(--primary);
-        border-radius: var(--radius-md);
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-actions { justify-content: center; }
+      .hero-quote-box { border-left: none; border-top: 4px solid var(--primary); border-radius: var(--radius-md); }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     }
 
     @media (max-width: 600px) {
-      .hero-title {
-        font-size: 2.2rem;
-      }
-      nav.main-nav a:not(.btn-paw-pet) {
-        display: none;
-      }
-      .cat-interaction-bar {
-        text-align: center;
-        justify-content: center;
-      }
+      .hero-title { font-size: 2.2rem; }
+      nav.main-nav a:not(.btn-paw-pet) { display: none; }
+      .cat-interaction-bar { text-align: center; justify-content: center; }
     }
   </style>
 </head>
@@ -995,47 +915,29 @@
         <div class="hero-cat-showcase">
           <div class="cat-mascot-card">
             <div class="cat-avatar-wrap">
-              <!-- 精緻超萌貓咪地質學家 SVG -->
               <svg class="cat-avatar-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- 貓耳 -->
                 <polygon points="40,90 20,30 80,60" fill="#FFB74D" stroke="#E65100" stroke-width="4" stroke-linejoin="round"/>
                 <polygon points="42,80 32,45 70,62" fill="#FF8A80" />
                 <polygon points="160,90 180,30 120,60" fill="#FFB74D" stroke="#E65100" stroke-width="4" stroke-linejoin="round"/>
                 <polygon points="158,80 168,45 130,62" fill="#FF8A80" />
-
-                <!-- 貓頭 -->
                 <ellipse cx="100" cy="115" rx="72" ry="62" fill="#FFE082" stroke="#E65100" stroke-width="4"/>
-                
-                <!-- 額頭虎斑紋 -->
                 <path d="M100 65 L100 85 M86 68 L92 82 M114 68 L108 82" stroke="#E65100" stroke-width="4" stroke-linecap="round"/>
-
-                <!-- 貓臉雙頰花紋 -->
                 <ellipse cx="60" cy="135" rx="14" ry="10" fill="#FFAB91" opacity="0.6"/>
                 <ellipse cx="140" cy="135" rx="14" ry="10" fill="#FFAB91" opacity="0.6"/>
-
-                <!-- 貓眼睛 -->
                 <ellipse cx="72" cy="112" rx="11" ry="14" fill="#2E7D32"/>
                 <circle cx="75" cy="108" r="4.5" fill="white"/>
                 <ellipse cx="128" cy="112" rx="11" ry="14" fill="#2E7D32"/>
                 <circle cx="131" cy="108" r="4.5" fill="white"/>
-
-                <!-- 貓鼻子與嘴巴 -->
                 <polygon points="96,126 104,126 100,132" fill="#FF5252"/>
                 <path d="M100 132 Q93 140 85 136 M100 132 Q107 140 115 136" stroke="#5D4037" stroke-width="3" stroke-linecap="round" fill="none"/>
-
-                <!-- 貓鬍鬚 -->
                 <line x1="45" y1="124" x2="15" y2="120" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
                 <line x1="45" y1="134" x2="18" y2="138" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
                 <line x1="155" y1="124" x2="185" y2="120" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
                 <line x1="155" y1="134" x2="182" y2="138" stroke="#795548" stroke-width="3" stroke-linecap="round"/>
-
-                <!-- 工安工程帽（地球物理野外探勘帽） -->
                 <ellipse cx="100" cy="62" rx="56" ry="18" fill="#FFD54F" stroke="#F57F17" stroke-width="3"/>
                 <path d="M52 62 C52 28, 148 28, 148 62 Z" fill="#FFEE58" stroke="#F57F17" stroke-width="3"/>
                 <circle cx="100" cy="46" r="8" fill="#4CAF50"/>
                 <path d="M100 41 L100 51 M95 46 L105 46" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-
-                <!-- 放大鏡 / 震測波小配件 -->
                 <path d="M142 145 Q160 160 175 180" stroke="#FF7043" stroke-width="6" stroke-linecap="round"/>
                 <circle cx="140" cy="142" r="16" stroke="#FF7043" stroke-width="4" fill="#E0F7FA" fill-opacity="0.7"/>
                 <path d="M132 142 Q136 134 140 142 T148 142" stroke="#00838F" stroke-width="2.5" fill="none"/>
@@ -1052,95 +954,69 @@
     </div>
   </section>
 
-  <!-- 為什麼有貓？貓咪地球物理學 -->
+  <!-- 為什麼有貓？ -->
   <section id="why-cat">
     <div class="container">
       <div class="section-tag">Feline Geophysics</div>
       <h2 class="section-title">🐾 為什麼這門地球物理課要有貓？</h2>
-      <p class="section-desc">
-        很多人以為地球物理全是生硬的數學微積分與繁重程式碼？其實，貓咪才是自然界最頂尖的地球物理學大師！
-      </p>
+      <p class="section-desc">很多人以為地球物理全是生硬的數學與程式碼？其實，貓咪才是自然界最頂尖的地球物理學大師！</p>
 
       <div class="cat-science-grid">
         <div class="cat-science-card">
           <div class="cat-science-icon">🐾</div>
           <h3 class="cat-science-title">1. 肉球＝天然寬頻地震儀</h3>
-          <p class="cat-science-text">
-            貓咪的肉墊分佈著密集的帕西尼氏小體（Pacinian corpuscles），對地表微米級的高頻顫動極為敏銳。地震來臨前，貓咪往往比人類更早察覺初達 P 波！
-          </p>
+          <p class="cat-science-text">貓咪的肉墊分佈著密集的帕西尼氏小體，對地表微米級的高頻顫動極為敏銳，往往比人類更早察覺地震 P 波！</p>
         </div>
-
         <div class="cat-science-card">
           <div class="cat-science-icon">🌊</div>
           <h3 class="cat-science-title">2. 貓咪是流體也是固體</h3>
-          <p class="cat-science-text">
-            獲得搞笑諾貝爾獎的物理學證實：貓能在盒子裡變成液體。這正是地球地函（Mantle）高溫高壓下具備「固體彈性波傳播」與「長期黏滯流變對流」的最佳物理隱喻！
-          </p>
+          <p class="cat-science-text">搞笑諾貝爾獎證實貓能變成液體，這正是地函高溫高壓下具備固體彈性波傳播與長期黏滯流變的最佳物理隱喻！</p>
         </div>
-
         <div class="cat-science-card">
           <div class="cat-science-icon">⚡</div>
           <h3 class="cat-science-title">3. 貓抓板與斷層彈性回跳</h3>
-          <p class="cat-science-text">
-            當貓咪瘋狂抓貓抓板時，剪應力隨時間不斷累積；當超過紙板抗剪強度時，瞬間破裂釋放應變能——這就是芮氏地震規模與彈性回跳理論（Elastic Rebound）的日常實踐！
-          </p>
+          <p class="cat-science-text">貓咪瘋狂抓貓抓板時累積剪應力，超過極限瞬間破裂釋放應變能，這就是地震規模與彈性回跳理論的日常實踐！</p>
         </div>
-
         <div class="cat-science-card">
           <div class="cat-science-icon">🔍</div>
           <h3 class="cat-science-title">4. 好奇心是科學探究的本能</h3>
-          <p class="cat-science-text">
-            "Curiosity killed the cat, but satisfaction brought it back." 科學家看見未知數據時的眼睛，就跟貓咪盯著會動的逗貓棒一樣發亮。保持這份好奇，你就是地球物理學家！
-          </p>
+          <p class="cat-science-text">"Curiosity killed the cat, but satisfaction brought it back." 科學家看見未知數據時的眼睛，就跟盯著逗貓棒一樣發亮！</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 上課方式與四大核心理念 -->
+  <!-- 上課方式 -->
   <section id="how-we-learn" class="pedagogy-section">
     <div class="container">
       <div class="section-tag">Learning Methodology</div>
       <h2 class="section-title">🎓 我們怎麼上課？打破傳統背誦的「四大核心」</h2>
-      <p class="section-desc">
-        這門課絕不是「老師在台上講、學生在台下抄、期末考前死背考古題」。我們透過任務挑戰模式，讓大家親手動手做、開口論證、駕馭現代工具。
-      </p>
+      <p class="section-desc">我們透過任務挑戰模式，讓大家親手動手做、開口論證、駕馭現代工具。</p>
 
       <div class="core-pillars-grid">
         <div class="pillar-card">
           <div class="pillar-number">01</div>
           <h3 class="pillar-heading">任務導向 × 小組合作</h3>
-          <p class="pillar-desc">
-            每堂課劃分明確的小任務（Tasks）。2–3人組成探究戰隊，互相討論、協作編程，從第一堂課就開始累積作品集，拒當教室孤島！
-          </p>
+          <p class="pillar-desc">每堂課劃分明確的小任務，2–3人組成探究戰隊互相討論、協作編程，拒當教室孤島！</p>
         </div>
-
         <div class="pillar-card">
           <div class="pillar-number">02</div>
           <h3 class="pillar-heading">CLIL 雙語學科整合</h3>
-          <p class="pillar-desc">
-            不是英文課，而是「用英文當探究工具」。老師提供全套 8 級階梯式句型鷹架，讓你輕鬆用道地科學英語發表觀點與討論數據。
-          </p>
+          <p class="pillar-desc">用英文當探究工具，全套 8 級階梯式句型鷹架，讓你輕鬆用道地科學英語發表觀點。</p>
         </div>
-
         <div class="pillar-card">
           <div class="pillar-number">03</div>
           <h3 class="pillar-heading">CER 科學論證思維</h3>
-          <p class="pillar-desc">
-            不說「我覺得」，而是追問：你的主張（Claim）是什麼？你的實證數據（Evidence）在哪？連接二者的物理推理（Reasoning）是否合理？
-          </p>
+          <p class="pillar-desc">不說「我覺得」，追問主張（Claim）、實證數據（Evidence）與物理推理（Reasoning）是否合理。</p>
         </div>
-
         <div class="pillar-card">
           <div class="pillar-number">04</div>
           <h3 class="pillar-heading">AI 協作與數位工具鏈</h3>
-          <p class="pillar-desc">
-            掌握 Gemini、Codex、Google Colab、PyGMT 與 GitHub Pages。AI 是你的智慧貓助教，學習提問與檢驗，而不是抄襲答案！
-          </p>
+          <p class="pillar-desc">掌握 Gemini、Google Colab、PyGMT 與 GitHub Pages，讓 AI 成為你的智慧貓助教。</p>
         </div>
       </div>
 
-      <!-- 第一堂課3小時時間表 -->
+      <!-- 3小時時間表 -->
       <div class="timeline-wrap">
         <div class="timeline-header">
           <div class="timeline-title">⏱️ 第一堂課 3 小時任務通關地圖 (Task Map)</div>
@@ -1152,30 +1028,28 @@
             <span class="time-badge">09:00 - 09:50 · Part 1</span>
             <h4>建立這門課的學習方式</h4>
             <ul class="timeline-list">
-              <li><strong>Task 1</strong>：老師自我介紹（地震預警與 AI 教學）</li>
-              <li><strong>Task 2</strong>：這學期要做什麼？（18週地球物理地圖）</li>
-              <li><strong>Task 3</strong>：上課方式與期末 GitHub 成果展</li>
+              <li><strong>Task 1</strong>：老師自我介紹與教學理念</li>
+              <li><strong>Task 2</strong>：這學期要做什麼？（18週地圖）</li>
+              <li><strong>Task 3</strong>：上課方式與 GitHub 成果展</li>
               <li><strong>Task 4</strong>：2–3人分組，選出小組長</li>
             </ul>
           </div>
-
           <div class="timeline-block part2">
             <span class="time-badge">10:00 - 10:50 · Part 2</span>
             <h4>數位與 AI 工具鏈起步</h4>
             <ul class="timeline-list">
-              <li><strong>Task 5</strong>：認識 AI Agent（對話紀錄留存規範）</li>
+              <li><strong>Task 5</strong>：認識 AI Agent 與對話紀錄規範</li>
               <li><strong>Task 6</strong>：申請與啟用 GitHub 帳號</li>
-              <li><strong>Task 7</strong>：進入 Google Colab 雲端跑第一行 Python</li>
+              <li><strong>Task 7</strong>：進入 Google Colab 跑第一行 Python</li>
             </ul>
           </div>
-
           <div class="timeline-block part3">
             <span class="time-badge">11:00 - 12:00 · Part 3</span>
             <h4>地球物理探究與 CER 示範</h4>
             <ul class="timeline-list">
-              <li><strong>Task 8</strong>：什麼是地球物理？（三大支柱與四大領域）</li>
+              <li><strong>Task 8</strong>：三大支柱與四大領域介紹</li>
               <li><strong>Demo</strong>：Gemini + CER 實時探究示範</li>
-              <li><strong>Exit Ticket</strong>：保存 AI 對話紀錄，完成課後小任務</li>
+              <li><strong>Exit Ticket</strong>：保存 AI 對話與小任務</li>
             </ul>
           </div>
         </div>
@@ -1188,74 +1062,51 @@
     <div class="container">
       <div class="section-tag">Checklist</div>
       <h2 class="section-title">🎒 上課前要準備什麼？（奴才探險清單）</h2>
-      <p class="section-desc">
-        不用提前把整本厚重的課本背完！只要備齊以下幾樣「裝備」，你就能輕鬆跟上課程步調：
-      </p>
+      <p class="section-desc">備齊以下幾樣「裝備」，輕鬆跟上課程步調：</p>
 
       <div class="prep-card-grid">
         <div class="prep-card">
           <div>
             <div class="prep-badge">💻</div>
             <h3 class="prep-title">1. 攜帶筆電（充飽電）</h3>
-            <p class="prep-text">
-              課堂包含即時程式實作、AI 對話探究與 GitHub 協作。請務必攜帶筆電（Windows / Mac / Chromebook 皆可）與充電器。
-            </p>
+            <p class="prep-text">課堂包含即時程式實作與 GitHub 協作，請務必攜帶筆電與充電器。</p>
           </div>
-          <div class="prep-tip">
-            <span>🐾 叮嚀</span>：瀏覽器推薦使用 Chrome 或 Edge。
-          </div>
+          <div class="prep-tip"><span>🐾 叮嚀</span>：瀏覽器推薦 Chrome 或 Edge。</div>
         </div>
-
         <div class="prep-card">
           <div>
             <div class="prep-badge">🐙</div>
             <h3 class="prep-title">2. 申請 GitHub 帳號</h3>
-            <p class="prep-text">
-              我們會用 GitHub 進行代碼管理與期末專案網頁（GitHub Pages）部署。若還沒有帳號，請至 github.com 免費註冊一個喜歡的 ID。
-            </p>
+            <p class="prep-text">使用 GitHub 進行代碼管理與期末專案網頁部署，請先至 github.com 註冊。</p>
           </div>
-          <div class="prep-tip">
-            <span>🐾 叮嚀</span>：可以用自己好記的帳號名稱。
-          </div>
+          <div class="prep-tip"><span>🐾 叮嚀</span>：用自己好記的帳號名稱。</div>
         </div>
-
         <div class="prep-card">
           <div>
             <div class="prep-badge">☁️</div>
             <h3 class="prep-title">3. 確認 Google 帳號</h3>
-            <p class="prep-text">
-              我們將使用 Google Colab，雲端免費提供高效能運算環境，你不需要在電腦上苦惱安裝複雜的 Python 或地學函式庫！
-            </p>
+            <p class="prep-text">使用 Google Colab 雲端跑 Python，免去安裝複雜地學套件的煩惱！</p>
           </div>
-          <div class="prep-tip">
-            <span>🐾 叮嚀</span>：建議使用北市大學校信箱或常用個人 Gmail。
-          </div>
+          <div class="prep-tip"><span>🐾 叮嚀</span>：建議使用學校信箱或常用 Gmail。</div>
         </div>
-
         <div class="prep-card">
           <div>
             <div class="prep-badge">🧠</div>
             <h3 class="prep-title">4. 開放與好奇的心態</h3>
-            <p class="prep-text">
-              英文不流利？沒有寫過程式？通通沒關係！這門課由淺入深，老師與助教會一步步陪伴大家，犯錯是探索科學的最佳途徑！
-            </p>
+            <p class="prep-text">英文不流利、沒寫過程式通通沒關係，犯錯是探索科學的最佳途徑！</p>
           </div>
-          <div class="prep-tip">
-            <span>🐾 叮嚀</span>：只要敢發問、敢跟 AI 辯論，你就是霸氣主子！
-          </div>
+          <div class="prep-tip"><span>🐾 叮嚀</span>：敢發問、敢跟 AI 辯論就是主子！</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CER 思考法互動展示 -->
+  <!-- CER 思考法 -->
   <section id="cer-demo">
     <div class="container">
       <div class="section-tag">Scientific Reasoning</div>
       <h2 class="section-title">🧩 喵星人 CER 思考法展示</h2>
-      <p class="section-desc">
-        科學家怎麼知道一件事情是對的？點選下方三個真實地球物理探究情境，看看 Claim、Evidence、Reasoning 如何緊密結合：
-      </p>
+      <p class="section-desc">點選下方三個真實地球物理情境，看看 Claim、Evidence、Reasoning 如何緊密結合：</p>
 
       <div class="cer-interactive-container">
         <div class="cer-tabs">
@@ -1263,74 +1114,46 @@
           <button class="cer-tab-btn" onclick="switchCerTab(1)">📉 案例二：折射震測走時</button>
           <button class="cer-tab-btn" onclick="switchCerTab(2)">⚖️ 案例三：地下重力異常</button>
         </div>
-
-        <div class="cer-content-box" id="cer-display-box">
-          <!-- JS 動態插入案例內容 -->
-        </div>
+        <div class="cer-content-box" id="cer-display-box"></div>
       </div>
     </div>
   </section>
 
-  <!-- CLIL 科學英語口說 -->
+  <!-- CLIL 科學英語 -->
   <section id="clil-speech">
     <div class="container">
       <div class="section-tag">Bilingual Sentence Bank</div>
       <h2 class="section-title">🗣️ 學生必備「科學論述六句組」</h2>
-      <p class="section-desc">
-        不用死背冗長文法，學會這六個科學金句，你就能流利表達觀察、假說與結論：
-      </p>
+      <p class="section-desc">學會這六個科學金句，輕鬆流利表達觀察、假說與結論：</p>
 
       <div class="clil-quotes-grid">
         <div class="clil-phrase-card">
           <div class="clil-num">1</div>
-          <div>
-            <div class="clil-en">We observe that...</div>
-            <div class="clil-zh">我們觀察到＿＿＿＿。（描述現象與地圖特徵）</div>
-          </div>
+          <div><div class="clil-en">We observe that...</div><div class="clil-zh">我們觀察到＿＿＿＿。</div></div>
         </div>
-
         <div class="clil-phrase-card">
           <div class="clil-num">2</div>
-          <div>
-            <div class="clil-en">We want to know why...</div>
-            <div class="clil-zh">我們想知道為什麼＿＿＿＿。（聚焦探究核心問題）</div>
-          </div>
+          <div><div class="clil-en">We want to know why...</div><div class="clil-zh">我們想知道為什麼＿＿＿＿。</div></div>
         </div>
-
         <div class="clil-phrase-card">
           <div class="clil-num">3</div>
-          <div>
-            <div class="clil-en">We hypothesize that...</div>
-            <div class="clil-zh">我們假設＿＿＿＿。（大膽提出初期物理模型）</div>
-          </div>
+          <div><div class="clil-en">We hypothesize that...</div><div class="clil-zh">我們假設＿＿＿＿。</div></div>
         </div>
-
         <div class="clil-phrase-card">
           <div class="clil-num">4</div>
-          <div>
-            <div class="clil-en">If our hypothesis is correct, we expect...</div>
-            <div class="clil-zh">如果假說正確，我們預期＿＿＿＿。（進行驗證預測）</div>
-          </div>
+          <div><div class="clil-en">If our hypothesis is correct, we expect...</div><div class="clil-zh">如果假說正確，我們預期＿＿＿＿。</div></div>
         </div>
-
         <div class="clil-phrase-card">
           <div class="clil-num">5</div>
-          <div>
-            <div class="clil-en">The evidence shows that...</div>
-            <div class="clil-zh">證據顯示＿＿＿＿。（呈列觀測數據與圖表）</div>
-          </div>
+          <div><div class="clil-en">The evidence shows that...</div><div class="clil-zh">證據顯示＿＿＿＿。</div></div>
         </div>
-
         <div class="clil-phrase-card">
           <div class="clil-num">6</div>
-          <div>
-            <div class="clil-en">Therefore, we revise our model.</div>
-            <div class="clil-zh">因此我們修改我們的模型。（科學建模的迭代循環）</div>
-          </div>
+          <div><div class="clil-en">Therefore, we revise our model.</div><div class="clil-zh">因此我們修改我們的模型。</div></div>
         </div>
       </div>
 
-      <!-- 吸貓互動按鈕列 -->
+      <!-- 互動計數區 -->
       <div class="cat-interaction-bar">
         <div class="cat-interaction-text">
           <h3>🐾 摸摸橘寶隊長，吸一口地球物理歐氣！</h3>
@@ -1348,7 +1171,7 @@
     </div>
   </section>
 
-  <!-- 頁尾資訊 -->
+  <!-- 頁尾 -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -1360,7 +1183,6 @@
             授課教師：陳達毅 老師 (Dayi Chen)
           </p>
         </div>
-
         <div class="footer-links">
           <h4>專案資源檔案</h4>
           <ul>
@@ -1370,7 +1192,6 @@
             <li><a href="地球物理通論第一堂課｜CLIL句型與三例擴充附錄.md">📚 CLIL 科學英語八級句型庫</a></li>
           </ul>
         </div>
-
         <div class="footer-quote">
           <h4>課堂金句</h4>
           <p style="font-size: 0.88rem; color: #BCAAA4; font-style: italic;">
@@ -1379,88 +1200,44 @@
           </p>
         </div>
       </div>
-
       <div class="footer-bottom">
         <p>© 2026 Department of Earth and Environmental Sciences & Biological Resources, University of Taipei. Designed with 🐾 and ❤️ for all science explorers.</p>
       </div>
     </div>
   </footer>
 
-  <!-- 互動腳本 JS -->
+  <!-- 修正後的 JavaScript -->
   <script>
-    // CER 案例數據資料
     const cerCases = [
       {
         title: "案例一：台灣周圍地震分布與板塊碰撞",
-        claim: {
-          label: "Claim（主張）",
-          title: "地震並非隨機散布，而是集中在特定板塊邊界帶",
-          text: "台灣東部的地震活動與菲律賓海板塊向歐亞板塊的隱沒作用密切相關。"
-        },
-        evidence: {
-          label: "Evidence（證據）",
-          title: "震央分布圖與由東向西逐漸加深的班尼奧夫帶",
-          text: "PyGMT 繪製的地震資料顯示，震央集中成狹長帶狀，且花蓮以北深度隨隱沒角度明顯加深。"
-        },
-        reasoning: {
-          label: "Reasoning（物理推理解釋）",
-          title: "板塊相對運動產生應力積累與脆性破裂",
-          text: "剛性岩石圈在聚合板塊邊界劇烈摩擦碰撞，當累積剪應力超過岩石破裂強度時，突然釋放應變能產生地震。"
-        }
+        claim: { label: "Claim（主張）", title: "地震並非隨機散布，而是集中在特定板塊邊界帶", text: "台灣東部的地震活動與菲律賓海板塊向歐亞板塊的隱沒作用密切相關。" },
+        evidence: { label: "Evidence（證據）", title: "震央分布圖與由東向西逐漸加深的班尼奧夫帶", text: "PyGMT 繪製的地震資料顯示，震央集中成狹長帶狀，且花蓮以北深度隨隱沒角度明顯加深。" },
+        reasoning: { label: "Reasoning（物理推理解釋）", title: "板塊相對運動產生應力積累與脆性破裂", text: "剛性岩石圈在聚合板塊邊界劇烈摩擦碰撞，當累積剪應力超過岩石破裂強度時，突然釋放應變能產生地震。" }
       },
       {
         title: "案例二：折射震測走時圖的兩段折線",
-        claim: {
-          label: "Claim（主張）",
-          title: "地下介質存在分層，且下層震波速度高於上層",
-          text: "走時圖上出現不同斜率的兩條直線，代表存在直達波與折射波。"
-        },
-        evidence: {
-          label: "Evidence（證據）",
-          title: "遠端測站收到速度更快的初達訊號",
-          text: "在交越距離（Crossover distance）之後，折射波的到達時間超越直達波，成為第一初達訊號（First arrival）。"
-        },
-        reasoning: {
-          label: "Reasoning（物理推理解釋）",
-          title: "司乃耳定律（Snell's Law）與臨界折射",
-          text: "震波以臨界角入射至高速下層地層時產生頭波（Head wave），以高速 V₂ 沿交介面傳播，並持續折射回地表。"
-        }
+        claim: { label: "Claim（主張）", title: "地下介質存在分層，且下層震波速度高於上層", text: "走時圖上出現不同斜率的兩條直線，代表存在直達波與折射波。" },
+        evidence: { label: "Evidence（證據）", title: "遠端測站收到速度更快的初達訊號", text: "在交越距離之後，折射波的到達時間超越直達波，成為第一初達訊號。" },
+        reasoning: { label: "Reasoning（物理推理解釋）", title: "司乃耳定律與臨界折射", text: "震波以臨界角入射至高速下層地層時產生頭波，以高速沿交介面傳播，並持續折射回地表。" }
       },
       {
         title: "案例三：局部重力測量出現高值正異常",
-        claim: {
-          label: "Claim（主張）",
-          title: "該研究測區深部存在高密度岩體或基盤隆起",
-          text: "地表測得的布格重力異常（Bouguer Anomaly）呈現局部突起的圓形正值。"
-        },
-        evidence: {
-          label: "Evidence（證據）",
-          title: "重力計讀數經地形與緯度修正後仍偏高",
-          text: "資料顯示中心區域重力值比周圍背景值高出 25 mGal，且異常範圍集中對稱。"
-        },
-        reasoning: {
-          label: "Reasoning（物理推理解釋）",
-          title: "牛頓萬有引力定律（F = G·M·m / r²）",
-          text: "地下局部的多餘質量（Excess Mass，如密集的基性岩漿侵入體）會對地表儀器產生額外的垂直向下引力吸引。"
-        }
+        claim: { label: "Claim（主張）", title: "該研究測區深部存在高密度岩體或基盤隆起", text: "地表測得的布格重力異常呈現局部突起的圓形正值。" },
+        evidence: { label: "Evidence（證據）", title: "重力計讀數經地形與緯度修正後仍偏高", text: "資料顯示中心區域重力值比周圍背景值高出 25 mGal，且異常範圍集中對稱。" },
+        reasoning: { label: "Reasoning（物理推理解釋）", title: "牛頓萬有引力定律", text: "地下局部的多餘質量會對地表儀器產生額外的垂直向下引力吸引。" }
       }
     ];
 
-    // 切換 CER 案例標籤
     function switchCerTab(index) {
       const tabs = document.querySelectorAll('.cer-tab-btn');
       tabs.forEach((tab, i) => {
-        if (i === index) {
-          tab.classList.add('active');
-        } else {
-          tab.classList.remove('active');
-        }
+        if (i === index) { tab.classList.add('active'); }
+        else { tab.classList.remove('active'); }
       });
-
       renderCerContent(index);
     }
 
-    // 渲染 CER 內容
     function renderCerContent(index) {
       const data = cerCases[index];
       const box = document.getElementById('cer-display-box');
@@ -1483,7 +1260,6 @@
       `;
     }
 
-    // 摸摸貓咪計數與彩蛋台詞
     let petCount = 0;
     const catMeows = [
       "「喵嗚～肉球感應到了一次芮氏規模 2.0 的微震！」",
@@ -1492,26 +1268,27 @@
       "「喵！記得不要直接問 AI 答案，要問：『有什麼證據支持這個模型？』」",
       "「呼嚕嚕… 貓咪是流體也是固體，就像地函對流一樣～」",
       "「PyGMT 畫出來的地形圖，看起來就像美味的鮪魚罐頭山脊！」",
-      "「喵！我們觀察到（We observe that）同學的求知欲正在以震波速度上升！」"
+      "「喵！我們觀察到同學的求知欲正在以震波速度上升！」"
     ];
 
     function petTheCat() {
       petCount++;
-      document.getElementById('pet-counter').innerText = petCount;
+      const counterEl = document.getElementById('pet-counter');
+      if (counterEl) counterEl.innerText = petCount;
       
       const bubble = document.getElementById('cat-bubble-text');
       const randomMeow = catMeows[Math.floor(Math.random() * catMeows.length)];
-      bubble.innerText = randomMeow;
+      if (bubble) bubble.innerText = randomMeow;
       
-      // 俏皮微動畫
       const avatar = document.querySelector('.cat-avatar-svg');
-      avatar.style.transform = 'scale(1.18) rotate(' + (Math.random() > 0.5 ? '8deg' : '-8deg') + ')';
-      setTimeout(() => {
-        avatar.style.transform = '';
-      }, 350);
+      if (avatar) {
+        avatar.style.transform = 'scale(1.18) rotate(' + (Math.random() > 0.5 ? '8deg' : '-8deg') + ')';
+        setTimeout(() => {
+          avatar.style.transform = '';
+        }, 350);
+      }
     }
 
-    // 初始化頁面
     document.addEventListener('DOMContentLoaded', () => {
       renderCerContent(0);
     });
